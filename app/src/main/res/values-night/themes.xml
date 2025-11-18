@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark theme (optional) -->
+    <style name="Theme.Aman" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/blue_light</item>
+        <item name="colorPrimaryVariant">@color/blue_primary</item>
+        <item name="colorOnPrimary">@color/black</item>
+    </style>
+</resources>

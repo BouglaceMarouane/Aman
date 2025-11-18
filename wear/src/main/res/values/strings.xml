@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aman</string>
+    <string name="voice_input">Voice Input</string>
+    <string name="voice_prompt">Say amount</string>
+    <string name="voice_not_available">Voice not available</string>
+    <string name="voice_not_recognized">Amount not recognized</string>
+</resources>

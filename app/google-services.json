@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "448780002194",
+    "project_id": "aman-c60bf",
+    "storage_bucket": "aman-c60bf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448780002194:android:f1edc193816408ed1f174b",
+        "android_client_info": {
+          "package_name": "com.example.aman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448780002194-7n6m1pn1n7sp6lm0tomep6h238o38cbi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aman",
+            "certificate_hash": "b3bb8847b3ef6a74abdc5023a6529c342ef8e75c"
+          }
+        },
+        {
+          "client_id": "448780002194-te0reb3de56i4ndr62r5ulk8ek7d567q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBekfxIX73Tqs8dDy0o_za6KS9eqath3tc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448780002194-te0reb3de56i4ndr62r5ulk8ek7d567q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
