@@ -1,10 +1,12 @@
 package com.example.aman.ui.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.aman.R
 import com.example.aman.utils.PreferenceManager
 
@@ -22,6 +24,15 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             navigateToNext()
         }, splashDelay)
+
+        setupStatusBar()
+    }
+
+    private fun setupStatusBar() {
+        // Set status bar to transparent with dark icons
+        window.statusBarColor = Color.TRANSPARENT
+        WindowInsetsControllerCompat(window, window.decorView)
+            .isAppearanceLightStatusBars = true
     }
 
     private fun navigateToNext() {

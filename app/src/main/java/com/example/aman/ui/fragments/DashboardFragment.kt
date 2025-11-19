@@ -64,7 +64,7 @@ class DashboardFragment : Fragment() {
     private fun setupStatusBar() {
         // Set status bar to white with dark icons
         activity?.window?.let { window ->
-            window.statusBarColor = android.graphics.Color.CYAN
+            window.statusBarColor = android.graphics.Color.TRANSPARENT
             WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
         }
     }

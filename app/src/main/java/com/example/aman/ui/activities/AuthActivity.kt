@@ -2,6 +2,7 @@ package com.example.aman.ui.activities
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.aman.R
 import com.example.aman.databinding.ActivityAuthBinding
 import com.example.aman.ui.viewmodels.AuthViewModel
@@ -71,10 +73,18 @@ class AuthActivity : AppCompatActivity() {
         preferenceManager = PreferenceManager(this)
         firebaseAuth = FirebaseAuth.getInstance()
 
+        setupStatusBar()
         setupGoogleSignIn()
         setupObservers()
         setupButtons()
         updateUIMode()
+    }
+
+    private fun setupStatusBar() {
+        // Set status bar to transparent with dark icons
+        window.statusBarColor = Color.TRANSPARENT
+        WindowInsetsControllerCompat(window, window.decorView)
+            .isAppearanceLightStatusBars = true
     }
 
     @Suppress("DEPRECATION")
