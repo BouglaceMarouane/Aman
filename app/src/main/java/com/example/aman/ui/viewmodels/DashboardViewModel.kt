@@ -5,12 +5,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.aman.data.dao.DailyTotal
+import com.example.aman.data.entities.WaterIntake
 import com.example.aman.data.repository.AmanRepository
 import com.example.aman.utils.DateUtils
 import com.example.aman.utils.PreferenceManager
 import com.example.aman.utils.WaterDataSyncManager
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DashboardViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -37,7 +39,6 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
             if ((total ?: 0) >= goal) {
                 val today = DateUtils.getStartOfDay()
                 val lastReachedDate = preferenceManager.userId?.let {
-                    // You can track this in preferences if needed
                     0L
                 }
                 goalReachedToday = DateUtils.isToday(lastReachedDate ?: 0L)
@@ -60,14 +61,28 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
         viewModelScope.launch {
             val data = repository.waterRepository.getLastSevenDays()
 
-            // Convert to display format
-            val formattedData = data.map { dailyTotal ->
-                val date = dailyTotal.date
-                val dayOfWeek = date.substring(8, 10) // Get day number
-                dayOfWeek to dailyTotal.total
-            }.reversed() // Show oldest to newest
+            // ✅ FIXED: Only show days with actual usage
+            val formattedData = data
+                .filter { it.total > 0 } // Only days with water intake
+                .map { dailyTotal ->
+                    val date = dailyTotal.date
+                    // Get day number (18, 19, etc.)
+                    val dayOfWeek = date.substring(8, 10)
+                    dayOfWeek to dailyTotal.total
+                }
+                .reversed() // Show oldest to newest
 
             _weeklyData.value = formattedData
         }
+    }
+
+    // ✅ Get today's records
+    suspend fun getTodayRecords(): List<WaterIntake> {
+        return repository.waterRepository.getTodayRecords()
+    }
+
+    // ✅ Delete water intake record
+    suspend fun deleteWaterIntake(id: Int) {
+        repository.waterRepository.deleteWaterIntake(id)
     }
 }

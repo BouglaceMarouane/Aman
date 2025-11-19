@@ -1,24 +1,31 @@
 package com.example.aman.ui.fragments
 
-import android.graphics.Color
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
+import android.widget.EditText
 import android.widget.Toast
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aman.R
 import com.example.aman.databinding.FragmentDashboardBinding
+import com.example.aman.ui.adapters.TodayRecordsAdapter
 import com.example.aman.ui.viewmodels.DashboardViewModel
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DashboardFragment : Fragment() {
 
@@ -26,6 +33,7 @@ class DashboardFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: DashboardViewModel by viewModels()
+    private lateinit var recordsAdapter: TodayRecordsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,72 +47,31 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupObservers()
-        setupButtons()
+        setupStatusBar()
+        setupDate()
         setupChart()
+        setupRecyclerView()
+        setupObservers()
+        setupFAB()
+
+        // Load data
+        lifecycleScope.launch {
+            viewModel.loadWeeklyData()
+        }
+        loadTodayRecords()
     }
 
-    private fun setupObservers() {
-        viewModel.todayTotal.observe(viewLifecycleOwner) { total ->
-            val amount = total ?: 0
-            binding.tvIntakeAmount.text = "$amount ml"
-
-            val goal = viewModel.dailyGoal.value ?: 2000
-            updateProgress(amount, goal)
-        }
-
-        viewModel.dailyGoal.observe(viewLifecycleOwner) { goal ->
-            val amount = viewModel.todayTotal.value ?: 0
-            updateProgress(amount, goal)
-        }
-
-        viewModel.weeklyData.observe(viewLifecycleOwner) { data ->
-            updateChart(data)
-        }
-    }
-
-    private fun updateProgress(intake: Int, goal: Int) {
-        val progress = ((intake.toFloat() / goal) * 100).toInt()
-        binding.progressCircular.progress = progress
-        binding.tvProgress.text = "$progress%"
-        binding.tvGoal.text = "Goal: $goal ml"
-
-// CHECK IF GOAL REACHED
-        if (intake >= goal && !viewModel.goalReachedToday) {
-            viewModel.goalReachedToday = true
-            showGoalReachedToast()  // ✅ USE TOAST INSTEAD
+    private fun setupStatusBar() {
+        // Set status bar to white with dark icons
+        activity?.window?.let { window ->
+            window.statusBarColor = android.graphics.Color.CYAN
+            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
         }
     }
 
-    private fun setupButtons() {
-        binding.fabAddWater.setOnClickListener {
-            showAddWaterBottomSheet()
-        }
-    }
-
-    private fun showAddWaterBottomSheet() {
-        val dialog = BottomSheetDialog(requireContext())
-        val view = layoutInflater.inflate(R.layout.bottom_sheet_add_water, null)
-
-        val amounts = listOf(50, 100, 200, 250, 500)
-        val buttonIds = listOf(
-            R.id.btn_50ml,
-            R.id.btn_100ml,
-            R.id.btn_200ml,
-            R.id.btn_250ml,
-            R.id.btn_500ml
-        )
-
-        amounts.forEachIndexed { index, amount ->
-            view.findViewById<View>(buttonIds[index])?.setOnClickListener {
-                viewModel.addWater(amount)
-                Toast.makeText(context, "+$amount ml", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-        }
-
-        dialog.setContentView(view)
-        dialog.show()
+    private fun setupDate() {
+        val dateFormat = SimpleDateFormat("EEEE, d MMM", Locale.getDefault())
+        binding.tvDate.text = dateFormat.format(Date())
     }
 
     private fun setupChart() {
@@ -112,15 +79,15 @@ class DashboardFragment : Fragment() {
             description.isEnabled = false
             setDrawGridBackground(false)
             setDrawBarShadow(false)
-            setFitBars(true)
-            animateY(1000)
-
-            legend.isEnabled = false
+            setDrawValueAboveBar(true)
+            setMaxVisibleValueCount(7)
+            setPinchZoom(false)
 
             xAxis.apply {
                 position = XAxis.XAxisPosition.BOTTOM
                 setDrawGridLines(false)
                 granularity = 1f
+                labelCount = 7
             }
 
             axisLeft.apply {
@@ -129,53 +96,184 @@ class DashboardFragment : Fragment() {
             }
 
             axisRight.isEnabled = false
-        }
-
-        // Load initial data
-        lifecycleScope.launch {
-            viewModel.loadWeeklyData()
+            legend.isEnabled = true
+            animateY(1000)
         }
     }
 
-    private fun updateChart(data: List<Pair<String, Int>>) {
-        if (data.isEmpty()) return
+    private fun setupRecyclerView() {
+        recordsAdapter = TodayRecordsAdapter { record ->
+            lifecycleScope.launch {
+                viewModel.deleteWaterIntake(record.id)
+                Toast.makeText(context, "Record deleted", Toast.LENGTH_SHORT).show()
 
-        val entries = data.mapIndexed { index, pair ->
-            BarEntry(index.toFloat(), pair.second.toFloat())
+                // ✅ Reload today's records
+                loadTodayRecords()
+
+                // ✅ Reload chart to reflect deletion
+                viewModel.loadWeeklyData()
+            }
         }
 
-        val dataSet = BarDataSet(entries, "Hydration").apply {
-            color = Color.parseColor("#4A90E2")
-            valueTextColor = Color.BLACK
+        binding.rvTodayRecords.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = recordsAdapter
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.todayTotal.observe(viewLifecycleOwner) { total ->
+            val intake = total ?: 0
+            val goal = viewModel.dailyGoal.value ?: 2000
+            updateProgress(intake, goal)
+        }
+
+        viewModel.dailyGoal.observe(viewLifecycleOwner) { goal ->
+            val intake = viewModel.todayTotal.value ?: 0
+            updateProgress(intake, goal)
+        }
+
+        viewModel.weeklyData.observe(viewLifecycleOwner) { weeklyData ->
+            updateChart(weeklyData)
+        }
+    }
+
+    private fun loadTodayRecords() {
+        lifecycleScope.launch {
+            val records = viewModel.getTodayRecords()
+            if (records.isEmpty()) {
+                binding.rvTodayRecords.visibility = View.GONE
+                binding.tvNoRecords.visibility = View.VISIBLE
+            } else {
+                binding.rvTodayRecords.visibility = View.VISIBLE
+                binding.tvNoRecords.visibility = View.GONE
+                recordsAdapter.submitList(records)
+            }
+        }
+    }
+
+    private fun updateProgress(intake: Int, goal: Int) {
+        val percentage = if (goal > 0) {
+            ((intake.toFloat() / goal) * 100).toInt().coerceIn(0, 100)
+        } else {
+            0
+        }
+
+        binding.tvIntakeAmount.text = "$intake/$goal ml"
+        binding.tvPercentage.text = "$percentage%"
+        animateProgress(percentage)
+    }
+
+    private fun animateProgress(targetProgress: Int) {
+        val currentProgress = binding.circularProgress.progress
+        ObjectAnimator.ofInt(binding.circularProgress, "progress", currentProgress, targetProgress).apply {
+            duration = 800
+            interpolator = DecelerateInterpolator()
+            start()
+        }
+    }
+
+    private fun updateChart(weeklyData: List<Pair<String, Int>>) {
+        if (weeklyData.isEmpty()) {
+            binding.barChart.clear()
+            binding.barChart.setNoDataText("No data available")
+            return
+        }
+
+        val entries = weeklyData.mapIndexed { index, (_, amount) ->
+            BarEntry(index.toFloat(), amount.toFloat())
+        }
+
+        val labels = weeklyData.map { it.first }
+
+        val dataSet = BarDataSet(entries, "Daily Intake (ml)").apply {
+            color = resources.getColor(R.color.blue_primary, null)
+            valueTextColor = resources.getColor(R.color.blue_primary, null)
             valueTextSize = 10f
         }
 
         val barData = BarData(dataSet)
-        barData.barWidth = 0.8f
+        barData.barWidth = 0.5f
 
         binding.barChart.apply {
-            this.data = barData
-            xAxis.valueFormatter = IndexAxisValueFormatter(data.map { it.first })
-            xAxis.labelCount = data.size
-            invalidate()
+            data = barData
+            xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+            notifyDataSetChanged() // ✅ Notify chart of data change
+            invalidate() // ✅ Force redraw
+            animateY(800)
         }
     }
 
-    private fun showGoalReachedToast() {
-//        binding.lottieAnimation.apply {
-//            visibility = View.VISIBLE
-//            playAnimation()
-//            addAnimatorListener(object : android.animation.Animator.AnimatorListener {
-//                override fun onAnimationStart(animation: android.animation.Animator) {}
-//                override fun onAnimationEnd(animation: android.animation.Animator) {
-//                    visibility = View.GONE
-//                }
-//                override fun onAnimationCancel(animation: android.animation.Animator) {}
-//                override fun onAnimationRepeat(animation: android.animation.Animator) {}
-//            })
-//        }
+    private fun setupFAB() {
+        binding.fabAddWater.setOnClickListener {
+            showAddWaterDialog()
+        }
+    }
 
-        Toast.makeText(context, R.string.goal_reached, Toast.LENGTH_LONG).show()
+    private fun showAddWaterDialog() {
+        val amounts = arrayOf("50 ml", "100 ml", "150 ml", "200 ml", "250 ml", "Custom")
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Add Water")
+            .setItems(amounts) { _, which ->
+                when (which) {
+                    0 -> addWater(50)
+                    1 -> addWater(100)
+                    2 -> addWater(150)
+                    3 -> addWater(200)
+                    4 -> addWater(250)
+                    5 -> showCustomAmountDialog()
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun showCustomAmountDialog() {
+        val input = EditText(requireContext()).apply {
+            hint = "Enter amount (ml)"
+            inputType = android.text.InputType.TYPE_CLASS_NUMBER
+            setPadding(50, 30, 50, 30)
+        }
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Custom Amount")
+            .setView(input)
+            .setPositiveButton("Add") { _, _ ->
+                val amount = input.text.toString().toIntOrNull()
+                if (amount != null && amount > 0 && amount <= 2000) {
+                    addWater(amount)
+                } else {
+                    Toast.makeText(context, "Enter valid amount (1-2000 ml)", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun addWater(amountMl: Int) {
+        viewModel.addWater(amountMl)
+        Toast.makeText(context, "+$amountMl ml added! 💧", Toast.LENGTH_SHORT).show()
+
+        // ✅ Reload chart immediately
+        lifecycleScope.launch {
+            viewModel.loadWeeklyData()
+        }
+
+        // ✅ Reload today's records
+        loadTodayRecords()
+
+        checkGoalReached()
+    }
+
+    private fun checkGoalReached() {
+        val intake = viewModel.todayTotal.value ?: 0
+        val goal = viewModel.dailyGoal.value ?: 2000
+
+        if (intake >= goal && !viewModel.goalReachedToday) {
+            viewModel.goalReachedToday = true
+            Toast.makeText(context, "🎉 Goal reached!", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onDestroyView() {

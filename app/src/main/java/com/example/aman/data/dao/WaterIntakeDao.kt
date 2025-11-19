@@ -31,6 +31,11 @@ interface WaterIntakeDao {
     @Query("SELECT * FROM water_intake WHERE timestamp >= :startTime ORDER BY timestamp DESC")
     suspend fun getIntakesSince(startTime: Long): List<WaterIntake>
 
+    @Query("SELECT * FROM water_intake WHERE timestamp BETWEEN :start AND :end ORDER BY timestamp DESC")
+    suspend fun getIntakesBetween(start: Long, end: Long): List<WaterIntake>
+
+    @Query("DELETE FROM water_intake WHERE id = :id")
+    suspend fun deleteById(id: Int)
     @Delete
     suspend fun delete(waterIntake: WaterIntake)
 

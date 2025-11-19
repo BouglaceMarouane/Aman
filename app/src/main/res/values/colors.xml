@@ -2,8 +2,10 @@
 <resources>
     <!-- Primary Colors -->
     <color name="blue_primary">#4A90E2</color>
-    <color name="blue_light">#A4D7E1</color>
+<!--    <color name="blue_light">#A4D7E1</color>-->
     <color name="blue_dark">#2C5AA0</color>
+    <color name="blue_light">#42A5F5</color>
+    <color name="ciel">#E3F2FD</color>
 
     <!-- Secondary Colors -->
     <color name="green_chart">#7ED321</color>

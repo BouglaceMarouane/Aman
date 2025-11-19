@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.aman.data.dao.DailyTotal
 import com.example.aman.data.dao.WaterIntakeDao
 import com.example.aman.data.entities.WaterIntake
+import com.example.aman.utils.DateUtils
 import java.util.Calendar
 
 class WaterRepository(private val waterIntakeDao: WaterIntakeDao) {
@@ -38,6 +39,19 @@ class WaterRepository(private val waterIntakeDao: WaterIntakeDao) {
 
     suspend fun getIntakesSince(timestamp: Long): List<WaterIntake> {
         return waterIntakeDao.getIntakesSince(timestamp)
+    }
+
+    suspend fun getTodayRecords(): List<WaterIntake> {
+        val startOfDay = DateUtils.getStartOfDay()
+        val endOfDay = DateUtils.getEndOfDay()
+        return waterIntakeDao.getIntakesBetween(startOfDay, endOfDay)
+    }
+
+    /**
+     * Delete a water intake record
+     */
+    suspend fun deleteWaterIntake(id: Int) {
+        waterIntakeDao.deleteById(id)
     }
 
     suspend fun deleteIntake(waterIntake: WaterIntake) {
