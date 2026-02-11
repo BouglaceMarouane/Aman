@@ -25,8 +25,8 @@
 It combines **real-time progress tracking**, **cloud synchronization with Firebase**, and **smart wearable integration** — all wrapped in a clean, modern Material Design 3 interface.
 
 <div align="center"> 
-  <img src="https://github.com/BouglaceMarouane/Koursa/blob/118d5371ed8c4caaa1d3bbb7381b9bb878ee7863/presentation.jpg" width="100%" alt="Taxi Animation"/><br> 
-  <a href="https://www.canva.com/design/DAG4NOwueX4/3lBH5ujW-0nd9vfKwA2tdA/edit?utm_content=DAG4NOwueX4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank"> 
+  <img src="https://github.com/BouglaceMarouane/Aman/blob/9987b3d5c33220a86ca960594c5bd55d7202f087/Screenshot%202026-02-11%20213035.png" width="100%" alt="Taxi Animation"/><br> 
+  <a href="https://www.canva.com/design/DAG5LIqDJWA/-oYasxmsLVyYpKsYOUlIZw/edit?utm_content=DAG5LIqDJWA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank"> 
     <img src="https://img.shields.io/badge/📊%20View%20the%20Presentation-00C4CC?style=for-the-badge&logo=canva&logoColor=white" alt="View Presentation"/> 
   </a> 
 </div> 
