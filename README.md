@@ -2,8 +2,6 @@
   <img src="https://raw.githubusercontent.com/BouglaceMarouane/Aman/8e214bb8f43a1e6d1ea7e22f7d4ee739f93f9498/app/src/main/ic_launcher-playstore.png" width="30%" alt="Aman Hydration Banner"/>
 </p>
 
-<br>
-
 <div align="center">
 
 ### 💧 *A Smart Hydration Tracking Ecosystem built with Kotlin, Firebase & Wear OS*
@@ -27,11 +25,11 @@
 It combines **real-time progress tracking**, **cloud synchronization with Firebase**, and **smart wearable integration** — all wrapped in a clean, modern Material Design 3 interface.
 
 <div align="center"> 
-  <img src="https://raw.githubusercontent.com/BouglaceMarouane/Aman/8e214bb8f43a1e6d1ea7e22f7d4ee739f93f9498/app/src/main/ic_launcher-playstore.png" width="40%" alt="Aman Presentation"/><br><br>
-  <a href="YOUR_PRESENTATION_LINK_HERE" target="_blank">
+  <img src="https://github.com/BouglaceMarouane/Koursa/blob/118d5371ed8c4caaa1d3bbb7381b9bb878ee7863/presentation.jpg" width="100%" alt="Taxi Animation"/><br> 
+  <a href="https://www.canva.com/design/DAG4NOwueX4/3lBH5ujW-0nd9vfKwA2tdA/edit?utm_content=DAG4NOwueX4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank"> 
     <img src="https://img.shields.io/badge/📊%20View%20the%20Presentation-00C4CC?style=for-the-badge&logo=canva&logoColor=white" alt="View Presentation"/> 
   </a> 
-</div>
+</div> 
 
 ---
 
