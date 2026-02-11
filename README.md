@@ -2,19 +2,19 @@
   <img src="https://raw.githubusercontent.com/BouglaceMarouane/Aman/8e214bb8f43a1e6d1ea7e22f7d4ee739f93f9498/app/src/main/ic_launcher-playstore.png" width="30%" alt="Aman Hydration Banner"/>
 </p>
 
+<br>
+
 <div align="center">
 
 ### 💧 *A Smart Hydration Tracking Ecosystem built with Kotlin, Firebase & Wear OS*
 
 <em>Aman helps users track daily water intake, stay hydrated with smart reminders, and sync seamlessly between Android & Wear OS — all wrapped in a clean, modern UI.</em>
 
-</div>
-
 <br>
 
-[![GitHub stars](https://img.shields.io/github/stars/bouglacemarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
-[![GitHub forks](https://img.shields.io/github/forks/bouglacemarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
-[![GitHub issues](https://img.shields.io/github/issues/bouglacemarouane/Aman)](https://github.com/BouglaceMarouane/Aman/issues)
+[![GitHub stars](https://img.shields.io/github/stars/BouglaceMarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
+[![GitHub forks](https://img.shields.io/github/forks/BouglaceMarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
+[![GitHub issues](https://img.shields.io/github/issues/BouglaceMarouane/Aman)](https://github.com/BouglaceMarouane/Aman/issues)
 
 </div>
 
