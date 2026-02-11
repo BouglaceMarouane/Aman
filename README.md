@@ -221,27 +221,32 @@ git clone https://github.com/<your-username>/Aman.git
 
 ## 🚧 Challenges Faced
 
-During development, several challenges were addressed:
+**During development, several challenges were addressed:**
 
-**🔄 Real-time synchronization between Wear OS & Mobile**
+  - 🔄 Real-time synchronization between Wear OS & Mobile
 
-**☁️ Managing offline-first architecture with Firebase + Room**
+  - ☁️ Managing offline-first architecture with Firebase + Room
 
-**🔔 Reliable background reminders using WorkManager**
+  - 🔔 Reliable background reminders using WorkManager
 
-**🌍 Proper RTL support for Arabic**
+  - 🌍 Proper RTL support for Arabic
 
-**📊 Optimizing chart performance**
+  - 📊 Optimizing chart performance
 
-These improvements helped build a stable and scalable hydration ecosystem.
+**These improvements helped build a stable and scalable hydration ecosystem.**
 
 ## ⭐ Why Aman Stands Out
 
 ✅ Complete Mobile + Wear Ecosystem
+
 ✅ Real-Time Cloud Sync
+
 ✅ Offline-first Architecture
+
 ✅ Clean Material 3 UI
+
 ✅ Multi-language Support
+
 ✅ Production-ready MVVM structure
 
 ## 🤝 Contributing
