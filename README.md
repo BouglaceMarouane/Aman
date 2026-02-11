@@ -128,7 +128,6 @@ users/{uid}
 └── timestamp
 ~~~
 
-
 ---
 
 # 🎨 Design System
@@ -180,8 +179,6 @@ Progress = 75%
 ![Wearable](https://img.shields.io/badge/Play%20Services-Wearable%2018.1.0-4285F4?logo=googleplay&logoColor=white)
 ![DataStore](https://img.shields.io/badge/DataStore-1.0.0-purple)
 
-<br><br>
-
 ### ⌚ Wear OS App
 
 ![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-7F52FF?logo=kotlin&logoColor=white)
@@ -191,44 +188,55 @@ Progress = 75%
 
 </div>
 
-🔐 Security
-🔒 Firestore Rules
+## 🔐 Security
+
+### 🔒 Firestore Rules
+~~~
 match /users/{uid} {
   allow read, write: if request.auth.uid == uid;
 }
-🧪 Testing
+~~~
+### 🧪 Testing
+~~~
 ./gradlew testDebugUnitTest
 ./gradlew connectedAndroidTest
-🛠️ Installation
-1️⃣ Clone the Repository
+~~~
+
+## 🛠️ Installation
+
+### 1️⃣ Clone the Repository
+~~~
 git clone https://github.com/<your-username>/Aman.git
-2️⃣ Open in Android Studio
-File → Open → Select project folder
+~~~
 
-3️⃣ Sync Gradle
-Tools → Sync Project with Gradle Files
+### 2️⃣ Open in Android Studio
+  - File → Open → Select project folder
 
-4️⃣ Run
-Select mobile or wear
+### 3️⃣ Sync Gradle
+  - Tools → Sync Project with Gradle Files
 
-Click ▶ Run
+### 4️⃣ Run
+  - Select mobile or wear
+  - Click ▶ Run
 
-🚧 Challenges Faced
+## 🚧 Challenges Faced
+
 During development, several challenges were addressed:
 
-🔄 Real-time synchronization between Wear OS & Mobile
+**🔄 Real-time synchronization between Wear OS & Mobile**
 
-☁️ Managing offline-first architecture with Firebase + Room
+**☁️ Managing offline-first architecture with Firebase + Room**
 
-🔔 Reliable background reminders using WorkManager
+**🔔 Reliable background reminders using WorkManager**
 
-🌍 Proper RTL support for Arabic
+**🌍 Proper RTL support for Arabic**
 
-📊 Optimizing chart performance
+**📊 Optimizing chart performance**
 
 These improvements helped build a stable and scalable hydration ecosystem.
 
-⭐ Why Aman Stands Out
+## ⭐ Why Aman Stands Out
+
 ✅ Complete Mobile + Wear Ecosystem
 ✅ Real-Time Cloud Sync
 ✅ Offline-first Architecture
@@ -236,16 +244,53 @@ These improvements helped build a stable and scalable hydration ecosystem.
 ✅ Multi-language Support
 ✅ Production-ready MVVM structure
 
-👨‍💻 Author
+## 🤝 Contributing
+
+Contributions to this project are welcome! If you have suggestions, improvements, or bug fixes, please submit a pull request. Make sure to follow coding conventions and maintain consistent styles.
+
+If you encounter issues or want to request a new feature, please open an issue in the repository with as much detail as possible.
+
+### Ways to Contribute
+- 🐛 **Report Bugs** - Found an issue? Let us know!
+- 💡 **Suggest Features** - Have ideas? We'd love to hear them!
+- 🔧 **Submit Pull Requests** - Code contributions are welcome
+- 📖 **Improve Documentation** - Help make our docs better
+
+### Getting Started
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## ⭐ Support
+
+If you like this project, don't forget to leave a ⭐ on GitHub. Thank you and happy coding! 🚀
+
+---
+
+## 📬 Stay in Touch
+
 <div align="center">
-Marouane Bouglace
-Mobile Application Developer | Kotlin & Wear OS Enthusiast
 
+### 👨‍💻 **Marouane Bouglace** - *Project Creator*
 
-
+[![Email](https://img.shields.io/badge/Email-bouglacemarouane@gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white)](mailto:bouglacemarouane@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-bouglacemarouane-black?style=for-the-badge&logo=github&logoColor=white)](https://github.com/bouglacemarouane)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Marouane%20Bouglace-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/marouane-bouglace)
 
 </div>
-<div align="center">
-Stay Hydrated. Stay Aman. 💧
 
-</div> <p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=footer"/> </p>
+---
+
+<div align="center">
+
+**Thank you for visiting Aman! 💬✨**
+
+</div>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=footer"/>
+</p>
