@@ -97,10 +97,11 @@ It combines **real-time progress tracking**, **cloud synchronization with Fireba
 - Offline-first with Room
 
 ### 🗂️ Modules
+~~~
 Aman/
 ├── mobile/ → Android app
 └── wear/ → Wear OS companion
-
+~~~
 ### 🔥 Firebase Integration
 - Authentication
 - Firestore
@@ -151,8 +152,7 @@ users/{uid}
 ---
 
 # 🧮 Hydration Tracking Logic
-
-text
+~~~
 Daily Progress (%) = (Today Intake / Daily Goal) × 100
 
 Example:
@@ -160,6 +160,8 @@ Goal = 2000ml
 Intake = 1500ml
 
 Progress = 75%
+~~~
+
 🧰 Technologies Used
 <div align="center">
 
