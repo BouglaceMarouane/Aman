@@ -12,7 +12,7 @@
 
 <br>
 
-[![GitHub stars](https://img.shields.io/github/stars/BouglaceMarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
+[![GitHub stars](https://img.shields.io/github/stars/bouglacemarouane/Aman?style=social)](https://github.com/bouglacemarouane/Aman)
 [![GitHub forks](https://img.shields.io/github/forks/BouglaceMarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
 [![GitHub issues](https://img.shields.io/github/issues/BouglaceMarouane/Aman)](https://github.com/BouglaceMarouane/Aman/issues)
 
