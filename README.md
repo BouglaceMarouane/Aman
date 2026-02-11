@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/BouglaceMarouane/Aman/blob/8e214bb8f43a1e6d1ea7e22f7d4ee739f93f9498/app/src/main/ic_launcher-playstore.png" width="50%" alt="Aman Hydration Banner"/>
+  <img src="https://github.com/BouglaceMarouane/Aman/blob/8e214bb8f43a1e6d1ea7e22f7d4ee739f93f9498/app/src/main/ic_launcher-playstore.png" width="30%" alt="Aman Hydration Banner"/>
 </p>
 
 <div align="center">
