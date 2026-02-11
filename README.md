@@ -162,17 +162,35 @@ Intake = 1500ml
 Progress = 75%
 ~~~
 
-🧰 Technologies Used
+## 🧰 Technologies Used
+
 <div align="center">
 
+### 📱 Mobile App
 
+![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-7F52FF?logo=kotlin&logoColor=white)
+![Material 3](https://img.shields.io/badge/Material%20Design-3-3DDC84?logo=android&logoColor=white)
+![MVVM](https://img.shields.io/badge/Architecture-MVVM-blue)
+![Repository](https://img.shields.io/badge/Pattern-Repository-lightgrey)
+![Room](https://img.shields.io/badge/Room-2.6.1-42A5F5?logo=sqlite&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-Auth%20%7C%20Firestore%20%7C%20FCM-FFCA28?logo=firebase&logoColor=black)
+![WorkManager](https://img.shields.io/badge/WorkManager-2.9.0-blue)
+![MPAndroidChart](https://img.shields.io/badge/MPAndroidChart-3.1.0-orange)
+![Lottie](https://img.shields.io/badge/Lottie-6.3.0-00DDB3?logo=lottiefiles&logoColor=white)
+![Wearable](https://img.shields.io/badge/Play%20Services-Wearable%2018.1.0-4285F4?logo=googleplay&logoColor=white)
+![DataStore](https://img.shields.io/badge/DataStore-1.0.0-purple)
 
+<br><br>
 
+### ⌚ Wear OS App
 
-
-
+![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-7F52FF?logo=kotlin&logoColor=white)
+![Wear UI](https://img.shields.io/badge/Wear%20UI-Components-4285F4?logo=google&logoColor=white)
+![Data Layer](https://img.shields.io/badge/Data%20Layer-API-success)
+![Voice](https://img.shields.io/badge/Voice-RecognizerIntent-lightgrey)
 
 </div>
+
 🔐 Security
 🔒 Firestore Rules
 match /users/{uid} {
