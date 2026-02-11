@@ -101,7 +101,6 @@ Aman/
 ├── mobile/ → Android app
 └── wear/ → Wear OS companion
 
-
 ### 🔥 Firebase Integration
 - Authentication
 - Firestore
@@ -116,6 +115,7 @@ Aman/
 
 # 📊 Firestore Structure
 
+~~~
 users/{uid}
 ├── displayName
 ├── email
@@ -125,6 +125,7 @@ users/{uid}
 └── water_intake/{intakeId}
 ├── amountMl
 └── timestamp
+~~~
 
 
 ---
