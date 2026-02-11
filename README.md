@@ -12,7 +12,7 @@
 
 <br>
 
-[![GitHub stars](https://img.shields.io/github/stars/bouglacemarouane/Aman?style=social)](https://github.com/bouglacemarouane/Aman)
+[![GitHub stars](https://img.shields.io/github/stars/BouglaceMarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
 [![GitHub forks](https://img.shields.io/github/forks/BouglaceMarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
 [![GitHub issues](https://img.shields.io/github/issues/BouglaceMarouane/Aman)](https://github.com/BouglaceMarouane/Aman/issues)
 
@@ -20,25 +20,21 @@
 
 ---
 
-# ✨ About Aman
+## ✨ About Aman
 
-**Aman** is a complete **Hydration Tracking Ecosystem** composed of:
+**Aman** is a smart **Android & Wear OS hydration tracking ecosystem** designed to help users monitor daily water intake and build healthy hydration habits.  
 
-- 📱 Android Mobile Application  
-- ⌚ Wear OS Companion App  
-- ☁️ Firebase Backend Integration  
+It combines **real-time progress tracking**, **cloud synchronization with Firebase**, and **smart wearable integration** — all wrapped in a clean, modern Material Design 3 interface.
 
-It allows users to:
-
-- Track daily water intake  
-- Visualize weekly hydration statistics  
-- Set personalized goals  
-- Receive smart reminders  
-- Sync data in real time between phone and smartwatch  
-
-All built using **MVVM architecture**, **Room Database**, and **Firebase services**.
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/BouglaceMarouane/Aman/8e214bb8f43a1e6d1ea7e22f7d4ee739f93f9498/app/src/main/ic_launcher-playstore.png" width="40%" alt="Aman Presentation"/><br><br>
+  <a href="YOUR_PRESENTATION_LINK_HERE" target="_blank">
+    <img src="https://img.shields.io/badge/📊%20View%20the%20Presentation-00C4CC?style=for-the-badge&logo=canva&logoColor=white" alt="View Presentation"/> 
+  </a> 
+</div>
 
 ---
+
 
 # 🚀 Core Features
 
