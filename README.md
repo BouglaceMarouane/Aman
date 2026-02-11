@@ -10,9 +10,9 @@
 
 <br>
 
-![GitHub stars](https://img.shields.io/github/stars/bouglacemarouane/Aman?style=social)
-![GitHub forks](https://img.shields.io/github/forks/bouglacemarouane/Aman?style=social)
-![GitHub issues](https://img.shields.io/github/issues/bouglacemarouane/Aman)
+[![GitHub stars](https://img.shields.io/github/stars/bouglacemarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
+[![GitHub forks](https://img.shields.io/github/forks/bouglacemarouane/Aman?style=social)](https://github.com/BouglaceMarouane/Aman)
+[![GitHub issues](https://img.shields.io/github/issues/bouglacemarouane/Aman)](https://github.com/BouglaceMarouane/Aman/issues)
 
 </div>
 
